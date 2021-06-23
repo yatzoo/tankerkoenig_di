@@ -1,0 +1,484 @@
+{
+    "properties": {},
+    "description": "",
+    "processes": {
+        "readfile1": {
+            "component": "com.sap.file.read",
+            "metadata": {
+                "label": "Read File",
+                "x": 201.99999904632568,
+                "y": 132,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        },
+        "saphanaclient1": {
+            "component": "com.sap.hana.client2",
+            "metadata": {
+                "label": "SAP HANA Client",
+                "x": 941.9999952316284,
+                "y": 132,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "CSM_HANA"
+                    },
+                    "tableName": "\"SMITHJO\".\"STATIONS_MASTERDEMO\"",
+                    "tableColumns": [
+                        {
+                            "name": "\"uuid\"",
+                            "type": "NVARCHAR",
+                            "size": 50
+                        },
+                        {
+                            "name": "\"name\"",
+                            "type": "NVARCHAR",
+                            "size": 1000
+                        },
+                        {
+                            "name": "\"brand\"",
+                            "type": "NVARCHAR",
+                            "size": 1000
+                        },
+                        {
+                            "name": "\"street\"",
+                            "type": "NVARCHAR",
+                            "size": 500
+                        },
+                        {
+                            "name": "\"house_number\"",
+                            "type": "NVARCHAR",
+                            "size": 20
+                        },
+                        {
+                            "name": "\"post_code\"",
+                            "type": "NVARCHAR",
+                            "size": 10
+                        },
+                        {
+                            "name": "\"city\"",
+                            "type": "NVARCHAR",
+                            "size": 34
+                        },
+                        {
+                            "name": "\"latitude\"",
+                            "type": "DOUBLE"
+                        },
+                        {
+                            "name": "\"longtitude\"",
+                            "type": "DOUBLE"
+                        }
+                    ],
+                    "inputFormat": "CSV",
+                    "initTable": "Drop (Cascade)",
+                    "csvBreak": "\\n",
+                    "csvComma": ",",
+                    "csvLazyQuotes": false,
+                    "csvHeader": "Ignore"
+                }
+            }
+        },
+        "listfiles1": {
+            "component": "com.sap.file.list",
+            "metadata": {
+                "label": "List Files",
+                "x": 17,
+                "y": 72,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "mode": "Once",
+                    "connection": {
+                        "configurationType": "Connection Management",
+                        "connectionID": "DI_DATA_LAKE"
+                    },
+                    "path": "/shared/CSM/Tankerk%C3%B6nig/Stations_MasterData.csv"
+                }
+            }
+        },
+        "validationrule1": {
+            "component": "com.sap.dh.dq.validationRule",
+            "metadata": {
+                "label": "Validation Rule",
+                "x": 571.999997138977,
+                "y": 116,
+                "height": 82,
+                "width": 120,
+                "extensible": false,
+                "config": {
+                    "inputSchema": [
+                        {
+                            "name": "uuid",
+                            "type": "String",
+                            "length": 50
+                        },
+                        {
+                            "name": "name",
+                            "type": "String",
+                            "length": 1000
+                        },
+                        {
+                            "name": "brand",
+                            "type": "String",
+                            "length": 1000
+                        },
+                        {
+                            "name": "street",
+                            "type": "String",
+                            "length": 300
+                        },
+                        {
+                            "name": "house_number",
+                            "type": "String",
+                            "length": 20
+                        },
+                        {
+                            "name": "post_code",
+                            "type": "String",
+                            "length": 10
+                        },
+                        {
+                            "name": "city",
+                            "type": "String",
+                            "length": 34
+                        },
+                        {
+                            "name": "latitude",
+                            "type": "String",
+                            "length": 50
+                        },
+                        {
+                            "name": "longitude",
+                            "type": "String",
+                            "length": 50
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "column": "brand",
+                            "condition": "IS NOT NULL",
+                            "failAction": "PASS"
+                        }
+                    ]
+                }
+            }
+        },
+        "wiretap1": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 756.9999961853027,
+                "y": 132,
+                "height": 80,
+                "width": 120,
+                "ui": "dynpath",
+                "config": {}
+            }
+        },
+        "listfiles2": {
+            "component": "com.sap.file.list",
+            "metadata": {
+                "label": "List Files",
+                "x": 201.99999904632568,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "mode": "Once",
+                    "connection": {
+                        "configurationType": "Connection Management",
+                        "connectionID": "DI_DATA_LAKE"
+                    },
+                    "path": "/shared/CSM/Tankerk%C3%B6nig/2021-04-01-prices.csv"
+                }
+            }
+        },
+        "readfile2": {
+            "component": "com.sap.file.read",
+            "metadata": {
+                "label": "Read File",
+                "x": 386.99999809265137,
+                "y": 27,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        },
+        "saphanaclient2": {
+            "component": "com.sap.hana.client2",
+            "metadata": {
+                "label": "SAP HANA Client",
+                "x": 756.9999961853027,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "CSM_HANA"
+                    },
+                    "tableName": "\"SMITHJO\".\"PRICESDEMO\"",
+                    "tableColumns": [
+                        {
+                            "name": "date",
+                            "type": "NVARCHAR",
+                            "size": 22
+                        },
+                        {
+                            "name": "station_uuid",
+                            "type": "NVARCHAR",
+                            "size": 40
+                        },
+                        {
+                            "name": "diesel",
+                            "type": "DOUBLE"
+                        },
+                        {
+                            "name": "e5",
+                            "type": "DOUBLE"
+                        },
+                        {
+                            "name": "e10",
+                            "type": "DOUBLE"
+                        },
+                        {
+                            "name": "dieselchange",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "e5change",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "e10change",
+                            "type": "INTEGER"
+                        }
+                    ],
+                    "csvHeader": "Ignore",
+                    "initTable": "Create"
+                }
+            }
+        },
+        "tostringconverter2": {
+            "component": "com.sap.util.toStringConverter",
+            "metadata": {
+                "label": "ToString Converter",
+                "x": 606.499997138977,
+                "y": 26,
+                "height": 50,
+                "width": 50,
+                "config": {}
+            }
+        },
+        "wiretap2": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 941.9999952316284,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "ui": "dynpath",
+                "config": {}
+            }
+        },
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 1295.999994277954,
+                "y": 72,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        },
+        "21multiplexer1": {
+            "component": "com.sap.system.multiplexer.2-1",
+            "metadata": {
+                "label": "2:1 Multiplexer",
+                "x": 1126.999994277954,
+                "y": 72,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "config": {}
+            }
+        },
+        "tostringconverter1": {
+            "component": "com.sap.util.toStringConverter",
+            "metadata": {
+                "label": "ToString Converter",
+                "x": 386.99999809265137,
+                "y": 124,
+                "height": 50,
+                "width": 50,
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "141,103 168.99999952316284,103 168.99999952316284,172 196.99999904632568,172"
+            },
+            "src": {
+                "port": "ref",
+                "process": "listfiles1"
+            },
+            "tgt": {
+                "port": "ref",
+                "process": "readfile1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "695.999997138977,130 723.9999966621399,130 723.9999966621399,172 751.9999961853027,172"
+            },
+            "src": {
+                "port": "pass",
+                "process": "validationrule1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "880.9999961853027,172 908.9999957084656,172 908.9999957084656,181 936.9999952316284,181"
+            },
+            "src": {
+                "port": "out",
+                "process": "wiretap1"
+            },
+            "tgt": {
+                "port": "data",
+                "process": "saphanaclient1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "325.9999990463257,43 353.9999985694885,43 353.9999985694885,67 381.99999809265137,67"
+            },
+            "src": {
+                "port": "ref",
+                "process": "listfiles2"
+            },
+            "tgt": {
+                "port": "ref",
+                "process": "readfile2"
+            }
+        },
+        {
+            "metadata": {
+                "points": "510.99999809265137,58 538.9999976158142,58 538.9999976158142,42 601.499997138977,42"
+            },
+            "src": {
+                "port": "file",
+                "process": "readfile2"
+            },
+            "tgt": {
+                "port": "ininterface",
+                "process": "tostringconverter2"
+            }
+        },
+        {
+            "metadata": {
+                "points": "660.499997138977,51 723.9999966621399,51 723.9999966621399,61 751.9999961853027,61"
+            },
+            "src": {
+                "port": "outstring",
+                "process": "tostringconverter2"
+            },
+            "tgt": {
+                "port": "data",
+                "process": "saphanaclient2"
+            }
+        },
+        {
+            "metadata": {
+                "points": "880.9999961853027,52 936.9999952316284,52"
+            },
+            "src": {
+                "port": "result",
+                "process": "saphanaclient2"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap2"
+            }
+        },
+        {
+            "metadata": {
+                "points": "1065.9999952316284,52 1093.9999947547913,52 1093.9999947547913,103 1121.999994277954,103"
+            },
+            "src": {
+                "port": "out",
+                "process": "wiretap2"
+            },
+            "tgt": {
+                "port": "in1",
+                "process": "21multiplexer1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "1065.9999952316284,172 1093.9999947547913,172 1093.9999947547913,121 1121.999994277954,121"
+            },
+            "src": {
+                "port": "result",
+                "process": "saphanaclient1"
+            },
+            "tgt": {
+                "port": "in2",
+                "process": "21multiplexer1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "1250.999994277954,112 1290.999994277954,112"
+            },
+            "src": {
+                "port": "out1",
+                "process": "21multiplexer1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "306.9999990463257,163 354,163 354,140 400.99999809265137,140"
+            },
+            "src": {
+                "port": "file",
+                "process": "readfile1"
+            },
+            "tgt": {
+                "port": "ininterface",
+                "process": "tostringconverter1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "421.99999809265137,149 504,149 504,157 585.999997138977,157"
+            },
+            "src": {
+                "port": "outstring",
+                "process": "tostringconverter1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "validationrule1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {}
+}

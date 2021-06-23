@@ -1,0 +1,297 @@
+{
+    "properties": {},
+    "description": "",
+    "processes": {
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 1008.999997138977,
+                "y": 13,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        },
+        "listfiles1": {
+            "component": "com.sap.file.list",
+            "metadata": {
+                "label": "List Files",
+                "x": 17,
+                "y": 13,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "mode": "Once",
+                    "connection": {
+                        "configurationType": "Connection Management",
+                        "connectionID": "DI_DATA_LAKE"
+                    },
+                    "path": "/shared/CSM/Tankerk%C3%B6nig/StationsAndPrices_20210401.csv"
+                }
+            }
+        },
+        "readfile1": {
+            "component": "com.sap.file.read",
+            "metadata": {
+                "label": "Read File",
+                "x": 201.99999904632568,
+                "y": 13,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        },
+        "saphanaclient1": {
+            "component": "com.sap.hana.client2",
+            "metadata": {
+                "label": "SAP HANA Client",
+                "x": 839.999997138977,
+                "y": 13,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "CSM_HANA"
+                    },
+                    "tableName": "\"SMITHJO\".\"WEI_TANKERKÖNIG\"",
+                    "tableColumns": [
+                        {
+                            "name": "\"date\"",
+                            "type": "NVARCHAR",
+                            "size": 22
+                        },
+                        {
+                            "name": "\"uuid\"",
+                            "type": "NVARCHAR",
+                            "size": 50
+                        },
+                        {
+                            "name": "\"name\"",
+                            "type": "NVARCHAR",
+                            "size": 1000
+                        },
+                        {
+                            "name": "\"brand\"",
+                            "type": "NVARCHAR",
+                            "size": 1000
+                        },
+                        {
+                            "name": "\"city\"",
+                            "type": "NVARCHAR",
+                            "size": 500
+                        },
+                        {
+                            "name": "\"longitude\"",
+                            "type": "DOUBLE"
+                        },
+                        {
+                            "name": "\"latitude\"",
+                            "type": "DOUBLE"
+                        },
+                        {
+                            "name": "\"diesel\"",
+                            "type": "NVARCHAR",
+                            "size": 10
+                        },
+                        {
+                            "name": "\"e5\"",
+                            "type": "NVARCHAR",
+                            "size": 10
+                        },
+                        {
+                            "name": "\"e10\"",
+                            "type": "NVARCHAR",
+                            "size": 10
+                        }
+                    ],
+                    "inputFormat": "CSV",
+                    "initTable": "Create",
+                    "csvBreak": "\\n",
+                    "csvComma": ",",
+                    "csvLazyQuotes": false,
+                    "csvHeader": "Ignore"
+                }
+            }
+        },
+        "validationrule1": {
+            "component": "com.sap.dh.dq.validationRule",
+            "metadata": {
+                "label": "Validation Rule",
+                "x": 469.9999990463257,
+                "y": 12,
+                "height": 82,
+                "width": 120,
+                "extensible": false,
+                "config": {
+                    "inputSchema": [
+                        {
+                            "name": "date",
+                            "type": "String",
+                            "length": 22
+                        },
+                        {
+                            "name": "uuid",
+                            "type": "String",
+                            "length": 50
+                        },
+                        {
+                            "name": "name",
+                            "type": "String",
+                            "length": 1000
+                        },
+                        {
+                            "name": "brand",
+                            "type": "String",
+                            "length": 1000
+                        },
+                        {
+                            "name": "city",
+                            "type": "String",
+                            "length": 500
+                        },
+                        {
+                            "name": "longtitude",
+                            "type": "String",
+                            "length": 20
+                        },
+                        {
+                            "name": "latitude",
+                            "type": "String",
+                            "length": 20
+                        },
+                        {
+                            "name": "diesel",
+                            "type": "String",
+                            "length": 10
+                        },
+                        {
+                            "name": "e5",
+                            "type": "String",
+                            "length": 10
+                        },
+                        {
+                            "name": "e10",
+                            "type": "String",
+                            "length": 10
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "column": "brand",
+                            "condition": "IS NOT NULL",
+                            "failAction": "PASS"
+                        }
+                    ]
+                }
+            }
+        },
+        "wiretap1": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 654.9999980926514,
+                "y": 13,
+                "height": 80,
+                "width": 120,
+                "ui": "dynpath",
+                "config": {}
+            }
+        },
+        "tostringconverter1": {
+            "component": "com.sap.util.toStringConverter",
+            "metadata": {
+                "label": "ToString Converter",
+                "x": 360,
+                "y": 24,
+                "height": 50,
+                "width": 50,
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "141,44 168.99999952316284,44 168.99999952316284,53 196.99999904632568,53"
+            },
+            "src": {
+                "port": "ref",
+                "process": "listfiles1"
+            },
+            "tgt": {
+                "port": "ref",
+                "process": "readfile1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "963.999997138977,53 1003.999997138977,53"
+            },
+            "src": {
+                "port": "result",
+                "process": "saphanaclient1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "593.9999990463257,26 621.9999985694885,26 621.9999985694885,53 649.9999980926514,53"
+            },
+            "src": {
+                "port": "pass",
+                "process": "validationrule1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "778.9999980926514,53 806.9999976158142,53 806.9999976158142,62 834.999997138977,62"
+            },
+            "src": {
+                "port": "out",
+                "process": "wiretap1"
+            },
+            "tgt": {
+                "port": "data",
+                "process": "saphanaclient1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "325.9999990463257,44 340.5,44 340.5,40 355,40"
+            },
+            "src": {
+                "port": "file",
+                "process": "readfile1"
+            },
+            "tgt": {
+                "port": "ininterface",
+                "process": "tostringconverter1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "414,49 439.5,49 439.5,53 464.9999990463257,53"
+            },
+            "src": {
+                "port": "outstring",
+                "process": "tostringconverter1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "validationrule1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {}
+}
