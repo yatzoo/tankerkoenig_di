@@ -1,6 +1,6 @@
 {
     "properties": {},
-    "description": "",
+    "description": "Tankerkoenig - loading pricing data to HANA",
     "processes": {
         "readfile1": {
             "component": "com.sap.file.read",
