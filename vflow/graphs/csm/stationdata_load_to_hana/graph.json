@@ -1,6 +1,6 @@
 {
     "properties": {},
-    "description": "",
+    "description": "Tankerkoenig - loading station data to HANA",
     "processes": {
         "graphterminator1": {
             "component": "com.sap.util.graphTerminator",
