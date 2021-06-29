@@ -24,9 +24,9 @@
                 "config": {
                     "connection": {
                         "configurationType": "Configuration Manager",
-                        "connectionID": "CSM_HANA"
+                        "connectionID": "Tankerkoenig_CICD_Demo"
                     },
-                    "tableName": "\"SMITHJO\".\"STATIONS_MASTERDEMO\"",
+                    "tableName": "\"CSMHC_CICD\".\"STATIONS_MASTER\"",
                     "tableColumns": [
                         {
                             "name": "\"uuid\"",
@@ -68,16 +68,17 @@
                             "type": "DOUBLE"
                         },
                         {
-                            "name": "\"longtitude\"",
+                            "name": "\"longitude\"",
                             "type": "DOUBLE"
                         }
                     ],
                     "inputFormat": "CSV",
-                    "initTable": "Drop (Cascade)",
+                    "initTable": "None",
                     "csvBreak": "\\n",
                     "csvComma": ",",
                     "csvLazyQuotes": false,
-                    "csvHeader": "Ignore"
+                    "csvHeader": "Ignore",
+                    "insertMode": "UPSERT"
                 }
             }
         },
@@ -218,47 +219,47 @@
                 "config": {
                     "connection": {
                         "configurationType": "Configuration Manager",
-                        "connectionID": "CSM_HANA"
+                        "connectionID": "Tankerkoenig_CICD_Demo"
                     },
-                    "tableName": "\"SMITHJO\".\"PRICESDEMO\"",
+                    "tableName": "\"CSMHC_CICD\".\"PRICES_RESTAPI\"",
                     "tableColumns": [
                         {
-                            "name": "date",
-                            "type": "NVARCHAR",
-                            "size": 22
+                            "name": "\"DATE\"",
+                            "type": "TIMESTAMP"
                         },
                         {
-                            "name": "station_uuid",
+                            "name": "\"STATION_UUID\"",
                             "type": "NVARCHAR",
                             "size": 40
                         },
                         {
-                            "name": "diesel",
+                            "name": "\"DIESEL\"",
                             "type": "DOUBLE"
                         },
                         {
-                            "name": "e5",
+                            "name": "\"E5\"",
                             "type": "DOUBLE"
                         },
                         {
-                            "name": "e10",
+                            "name": "\"E10\"",
                             "type": "DOUBLE"
                         },
                         {
-                            "name": "dieselchange",
+                            "name": "\"DIESELCHANGE\"",
                             "type": "INTEGER"
                         },
                         {
-                            "name": "e5change",
+                            "name": "\"E5CHANGE\"",
                             "type": "INTEGER"
                         },
                         {
-                            "name": "e10change",
+                            "name": "\"E10CHANGE\"",
                             "type": "INTEGER"
                         }
                     ],
                     "csvHeader": "Ignore",
-                    "initTable": "Create"
+                    "initTable": "None",
+                    "insertMode": "UPSERT"
                 }
             }
         },

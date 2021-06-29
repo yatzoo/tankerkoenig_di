@@ -1,0 +1,104 @@
+{
+    "properties": {},
+    "description": "Tankerkoenig - fill STATIONS_ST_POINT",
+    "processes": {
+        "constantgenerator2": {
+            "component": "com.sap.util.constantGenerator",
+            "metadata": {
+                "label": "Constant Generator",
+                "x": 898,
+                "y": 214,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "config": {
+                    "content": "UPSERT \"CSMHC_CICD\".\"STATIONS_ST_POINT\" (\"uuid\", \"name\", \"brand\", \"street\", \"house_number\",\"post_code\", \"city\", \"latitude\", \"longitude\")  SELECT \"uuid\", \"name\", \"brand\", \"street\", \"house_number\",\"post_code\", \"city\", \"latitude\", \"longitude\" FROM \"CSMHC_CICD\".\"STATIONS_MASTER\" "
+                }
+            }
+        },
+        "saphanaclient2": {
+            "component": "com.sap.hana.client2",
+            "metadata": {
+                "label": "SAP HANA Client",
+                "x": 1106,
+                "y": 214,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "Tankerkoenig_CICD_Demo"
+                    },
+                    "insertMode": "UPSERT"
+                }
+            }
+        },
+        "wiretap1": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 1311,
+                "y": 214,
+                "height": 80,
+                "width": 120,
+                "ui": "dynpath",
+                "config": {}
+            }
+        },
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 1545,
+                "y": 214,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "1022,254 1061.5,254 1061.5,245 1101,245"
+            },
+            "src": {
+                "port": "out",
+                "process": "constantgenerator2"
+            },
+            "tgt": {
+                "port": "sql",
+                "process": "saphanaclient2"
+            }
+        },
+        {
+            "metadata": {
+                "points": "1230,254 1306,254"
+            },
+            "src": {
+                "port": "result",
+                "process": "saphanaclient2"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "1435,254 1540,254"
+            },
+            "src": {
+                "port": "out",
+                "process": "wiretap1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {}
+}

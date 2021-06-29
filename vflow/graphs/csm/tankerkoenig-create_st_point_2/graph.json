@@ -1,0 +1,78 @@
+{
+    "properties": {},
+    "description": "Tankerkoenig - calculate geo-coordinates in STATIONS_ST_POINT",
+    "processes": {
+        "constantgenerator1": {
+            "component": "com.sap.util.constantGenerator",
+            "metadata": {
+                "label": "Constant Generator",
+                "x": 385,
+                "y": 262,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "config": {
+                    "content": "UPDATE \"CSMHC_CICD\".\"STATIONS_ST_POINT\"  SET \"location_dimension\" = new ST_GEOMETRY('POINT(' || \"longitude\" || ' ' || \"latitude\" || ')', 4326).ST_Transform(3857)"
+                }
+            }
+        },
+        "saphanaclient1": {
+            "component": "com.sap.hana.client2",
+            "metadata": {
+                "label": "SAP HANA Client",
+                "x": 626,
+                "y": 262,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "Tankerkoenig_CICD_Demo"
+                    }
+                }
+            }
+        },
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 848,
+                "y": 262,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "509,302 565,302 565,293 621,293"
+            },
+            "src": {
+                "port": "out",
+                "process": "constantgenerator1"
+            },
+            "tgt": {
+                "port": "sql",
+                "process": "saphanaclient1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "750,302 843,302"
+            },
+            "src": {
+                "port": "result",
+                "process": "saphanaclient1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {}
+}

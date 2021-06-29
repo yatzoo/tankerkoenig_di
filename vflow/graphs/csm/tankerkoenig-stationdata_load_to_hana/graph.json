@@ -27,7 +27,7 @@
                         "configurationType": "Connection Management",
                         "connectionID": "DI_DATA_LAKE"
                     },
-                    "path": "/shared/CSM/Tankerk%C3%B6nig/StationsAndPrices_20210401.csv"
+                    "path": "/shared/CSM/Tankerk%C3%B6nig/Stations_MasterData.csv"
                 }
             }
         },
@@ -53,15 +53,10 @@
                 "config": {
                     "connection": {
                         "configurationType": "Configuration Manager",
-                        "connectionID": "CSM_HANA"
+                        "connectionID": "Tankerkoenig_CICD_Demo"
                     },
-                    "tableName": "\"SMITHJO\".\"WEI_TANKERKÖNIG\"",
+                    "tableName": "\"CSMHC_CICD\".\"STATIONS_MASTER\"",
                     "tableColumns": [
-                        {
-                            "name": "\"date\"",
-                            "type": "NVARCHAR",
-                            "size": 22
-                        },
                         {
                             "name": "\"uuid\"",
                             "type": "NVARCHAR",
@@ -78,40 +73,41 @@
                             "size": 1000
                         },
                         {
-                            "name": "\"city\"",
+                            "name": "\"street\"",
                             "type": "NVARCHAR",
                             "size": 500
                         },
                         {
-                            "name": "\"longitude\"",
-                            "type": "DOUBLE"
+                            "name": "\"house_number\"",
+                            "type": "NVARCHAR",
+                            "size": 20
+                        },
+                        {
+                            "name": "\"post_code\"",
+                            "type": "NVARCHAR",
+                            "size": 10
+                        },
+                        {
+                            "name": "\"city\"",
+                            "type": "NVARCHAR",
+                            "size": 34
                         },
                         {
                             "name": "\"latitude\"",
                             "type": "DOUBLE"
                         },
                         {
-                            "name": "\"diesel\"",
-                            "type": "NVARCHAR",
-                            "size": 10
-                        },
-                        {
-                            "name": "\"e5\"",
-                            "type": "NVARCHAR",
-                            "size": 10
-                        },
-                        {
-                            "name": "\"e10\"",
-                            "type": "NVARCHAR",
-                            "size": 10
+                            "name": "\"longitude\"",
+                            "type": "DOUBLE"
                         }
                     ],
                     "inputFormat": "CSV",
-                    "initTable": "Create",
+                    "initTable": "None",
                     "csvBreak": "\\n",
                     "csvComma": ",",
                     "csvLazyQuotes": false,
-                    "csvHeader": "Ignore"
+                    "csvHeader": "Ignore",
+                    "insertMode": "UPSERT"
                 }
             }
         },
@@ -120,17 +116,12 @@
             "metadata": {
                 "label": "Validation Rule",
                 "x": 469.9999990463257,
-                "y": 12,
+                "y": 42,
                 "height": 82,
                 "width": 120,
                 "extensible": false,
                 "config": {
                     "inputSchema": [
-                        {
-                            "name": "date",
-                            "type": "String",
-                            "length": 22
-                        },
                         {
                             "name": "uuid",
                             "type": "String",
@@ -147,14 +138,24 @@
                             "length": 1000
                         },
                         {
-                            "name": "city",
+                            "name": "street",
                             "type": "String",
                             "length": 500
                         },
                         {
-                            "name": "longtitude",
+                            "name": "house_number",
                             "type": "String",
                             "length": 20
+                        },
+                        {
+                            "name": "post_code",
+                            "type": "String",
+                            "length": 10
+                        },
+                        {
+                            "name": "city",
+                            "type": "String",
+                            "length": 500
                         },
                         {
                             "name": "latitude",
@@ -162,24 +163,34 @@
                             "length": 20
                         },
                         {
-                            "name": "diesel",
+                            "name": "longitude",
                             "type": "String",
-                            "length": 10
-                        },
-                        {
-                            "name": "e5",
-                            "type": "String",
-                            "length": 10
-                        },
-                        {
-                            "name": "e10",
-                            "type": "String",
-                            "length": 10
+                            "length": 20
                         }
                     ],
                     "rules": [
                         {
+                            "column": "uuid",
+                            "condition": "IS NOT NULL",
+                            "failAction": "PASS"
+                        },
+                        {
+                            "column": "name",
+                            "condition": "IS NOT NULL",
+                            "failAction": "PASS"
+                        },
+                        {
                             "column": "brand",
+                            "condition": "IS NOT NULL",
+                            "failAction": "PASS"
+                        },
+                        {
+                            "column": "latitude",
+                            "condition": "IS NOT NULL",
+                            "failAction": "PASS"
+                        },
+                        {
+                            "column": "longitude",
                             "condition": "IS NOT NULL",
                             "failAction": "PASS"
                         }
@@ -241,7 +252,7 @@
         },
         {
             "metadata": {
-                "points": "593.9999990463257,26 621.9999985694885,26 621.9999985694885,53 649.9999980926514,53"
+                "points": "574.9999990463257,51 619.5,51 619.5,53 649.9999980926514,53"
             },
             "src": {
                 "port": "pass",
@@ -280,7 +291,7 @@
         },
         {
             "metadata": {
-                "points": "414,49 439.5,49 439.5,53 464.9999990463257,53"
+                "points": "414,49 439.5,49 439.5,83 464.9999990463257,83"
             },
             "src": {
                 "port": "outstring",
