@@ -26,49 +26,49 @@
                         "configurationType": "Configuration Manager",
                         "connectionID": "Tankerkoenig_CICD_Demo"
                     },
-                    "tableName": "\"CSMHC_CICD\".\"STATIONS_MASTER\"",
+                    "tableName": "\"CSMHC_CICD\".\"CSM_TANKERKOENIG_STATIONS_MASTER\"",
                     "tableColumns": [
                         {
-                            "name": "\"uuid\"",
+                            "name": "\"UUID\"",
                             "type": "NVARCHAR",
                             "size": 50
                         },
                         {
-                            "name": "\"name\"",
+                            "name": "\"NAME\"",
                             "type": "NVARCHAR",
                             "size": 1000
                         },
                         {
-                            "name": "\"brand\"",
+                            "name": "\"BRAND\"",
                             "type": "NVARCHAR",
                             "size": 1000
                         },
                         {
-                            "name": "\"street\"",
+                            "name": "\"STREET\"",
                             "type": "NVARCHAR",
                             "size": 500
                         },
                         {
-                            "name": "\"house_number\"",
+                            "name": "\"HOUSE_NUMBER\"",
                             "type": "NVARCHAR",
                             "size": 20
                         },
                         {
-                            "name": "\"post_code\"",
+                            "name": "\"POST_CODE\"",
                             "type": "NVARCHAR",
                             "size": 10
                         },
                         {
-                            "name": "\"city\"",
+                            "name": "\"CITY\"",
                             "type": "NVARCHAR",
                             "size": 34
                         },
                         {
-                            "name": "\"latitude\"",
+                            "name": "\"LATITUDE\"",
                             "type": "DOUBLE"
                         },
                         {
-                            "name": "\"longitude\"",
+                            "name": "\"LONGITUDE\"",
                             "type": "DOUBLE"
                         }
                     ],
@@ -193,7 +193,7 @@
                         "configurationType": "Connection Management",
                         "connectionID": "DI_DATA_LAKE"
                     },
-                    "path": "/shared/CSM/Tankerk%C3%B6nig/2021-04-01-prices.csv"
+                    "path": "/shared/CSM/Tankerk%C3%B6nig/2021-04-01-prices_AdjTimeFormat.csv"
                 }
             }
         },
@@ -221,7 +221,7 @@
                         "configurationType": "Configuration Manager",
                         "connectionID": "Tankerkoenig_CICD_Demo"
                     },
-                    "tableName": "\"CSMHC_CICD\".\"PRICES_RESTAPI\"",
+                    "tableName": "\"CSMHC_CICD\".\"CSM_TANKERKOENIG_PRICES_RESTAPI\"",
                     "tableColumns": [
                         {
                             "name": "\"DATE\"",

@@ -55,49 +55,49 @@
                         "configurationType": "Configuration Manager",
                         "connectionID": "Tankerkoenig_CICD_Demo"
                     },
-                    "tableName": "\"CSMHC_CICD\".\"STATIONS_MASTER\"",
+                    "tableName": "\"CSMHC_CICD_2\".\"CSM_TANKERKOENIG_STATIONS_MASTER\"",
                     "tableColumns": [
                         {
-                            "name": "\"uuid\"",
+                            "name": "\"UUID\"",
                             "type": "NVARCHAR",
                             "size": 50
                         },
                         {
-                            "name": "\"name\"",
+                            "name": "\"NAME\"",
                             "type": "NVARCHAR",
                             "size": 1000
                         },
                         {
-                            "name": "\"brand\"",
+                            "name": "\"BRAND\"",
                             "type": "NVARCHAR",
                             "size": 1000
                         },
                         {
-                            "name": "\"street\"",
+                            "name": "\"STREET\"",
                             "type": "NVARCHAR",
                             "size": 500
                         },
                         {
-                            "name": "\"house_number\"",
+                            "name": "\"HOUSE_NUMBER\"",
                             "type": "NVARCHAR",
                             "size": 20
                         },
                         {
-                            "name": "\"post_code\"",
+                            "name": "\"POST_CODE\"",
                             "type": "NVARCHAR",
                             "size": 10
                         },
                         {
-                            "name": "\"city\"",
+                            "name": "\"CITY\"",
                             "type": "NVARCHAR",
                             "size": 34
                         },
                         {
-                            "name": "\"latitude\"",
+                            "name": "\"LATITUDE\"",
                             "type": "DOUBLE"
                         },
                         {
-                            "name": "\"longitude\"",
+                            "name": "\"LONGITUDE\"",
                             "type": "DOUBLE"
                         }
                     ],
