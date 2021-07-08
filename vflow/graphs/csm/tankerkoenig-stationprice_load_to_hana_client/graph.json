@@ -193,7 +193,7 @@
                         "configurationType": "Connection Management",
                         "connectionID": "DI_DATA_LAKE"
                     },
-                    "path": "/shared/CSM/Tankerk%C3%B6nig/2021-04-01-prices_AdjTimeFormat.csv"
+                    "path": "/shared/CSM/Tankerk%C3%B6nig/2021-04-27-prices_AdjTimeFormat.csv"
                 }
             }
         },

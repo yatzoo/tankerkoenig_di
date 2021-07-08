@@ -55,7 +55,7 @@
                         "configurationType": "Configuration Manager",
                         "connectionID": "Tankerkoenig_CICD_Demo"
                     },
-                    "tableName": "\"CSMHC_CICD_2\".\"CSM_TANKERKOENIG_STATIONS_MASTER\"",
+                    "tableName": "\"CSMHC_CICD\".\"CSM_TANKERKOENIG_STATIONS_MASTER\"",
                     "tableColumns": [
                         {
                             "name": "\"UUID\"",

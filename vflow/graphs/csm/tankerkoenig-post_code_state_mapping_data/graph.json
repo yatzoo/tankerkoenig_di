@@ -1,0 +1,165 @@
+{
+    "properties": {},
+    "description": "Tankerkoenig - loading post code and state mapping",
+    "processes": {
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 686.999997138977,
+                "y": 13,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        },
+        "listfiles1": {
+            "component": "com.sap.file.list",
+            "metadata": {
+                "label": "List Files",
+                "x": 17,
+                "y": 13,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "mode": "Once",
+                    "connection": {
+                        "configurationType": "Connection Management",
+                        "connectionID": "DI_DATA_LAKE"
+                    },
+                    "path": "/shared/CSM/Tankerk%C3%B6nig/German-Post-Codes.csv"
+                }
+            }
+        },
+        "readfile1": {
+            "component": "com.sap.file.read",
+            "metadata": {
+                "label": "Read File",
+                "x": 201.99999904632568,
+                "y": 13,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        },
+        "saphanaclient1": {
+            "component": "com.sap.hana.client2",
+            "metadata": {
+                "label": "SAP HANA Client",
+                "x": 493.99999713897705,
+                "y": 18,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "Tankerkoenig_CICD_Demo"
+                    },
+                    "tableName": "\"CSMHC_CICD\".\"CSM_TANKERKOENIG_POST_CODES\"",
+                    "tableColumns": [
+                        {
+                            "name": "\"PLACE\"",
+                            "type": "NVARCHAR",
+                            "size": 34
+                        },
+                        {
+                            "name": "\"PLACE_ADDTL\"",
+                            "type": "NVARCHAR",
+                            "size": 34
+                        },
+                        {
+                            "name": "\"POST_CODE\"",
+                            "type": "NVARCHAR",
+                            "size": 10
+                        },
+                        {
+                            "name": "\"AREA_CODE\"",
+                            "type": "NVARCHAR",
+                            "size": 10
+                        },
+                        {
+                            "name": "\"STATE\"",
+                            "type": "NVARCHAR",
+                            "size": 50
+                        }
+                    ],
+                    "inputFormat": "CSV",
+                    "initTable": "None",
+                    "csvBreak": "\\n",
+                    "csvComma": ";",
+                    "csvLazyQuotes": false,
+                    "csvHeader": "Ignore",
+                    "insertMode": "UPSERT"
+                }
+            }
+        },
+        "tostringconverter1": {
+            "component": "com.sap.util.toStringConverter",
+            "metadata": {
+                "label": "ToString Converter",
+                "x": 360,
+                "y": 24,
+                "height": 50,
+                "width": 50,
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "141,44 168.99999952316284,44 168.99999952316284,53 196.99999904632568,53"
+            },
+            "src": {
+                "port": "ref",
+                "process": "listfiles1"
+            },
+            "tgt": {
+                "port": "ref",
+                "process": "readfile1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "617.999997138977,58 650,58 650,53 681.999997138977,53"
+            },
+            "src": {
+                "port": "result",
+                "process": "saphanaclient1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "325.9999990463257,44 340.5,44 340.5,40 355,40"
+            },
+            "src": {
+                "port": "file",
+                "process": "readfile1"
+            },
+            "tgt": {
+                "port": "ininterface",
+                "process": "tostringconverter1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "414,49 451.5,49 451.5,67 488.99999713897705,67"
+            },
+            "src": {
+                "port": "outstring",
+                "process": "tostringconverter1"
+            },
+            "tgt": {
+                "port": "data",
+                "process": "saphanaclient1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {}
+}

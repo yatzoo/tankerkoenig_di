@@ -12,7 +12,7 @@
                 "width": 120,
                 "extensible": true,
                 "config": {
-                    "content": "UPSERT \"CSMHC_CICD_2\".\"CSM_TANKERKOENIG_STATIONS_ST_POINT\"  (\"UUID\", \"NAME\", \"BRAND\", \"STREET\", \"HOUSE_NUMBER\",\"POST_CODE\", \"CITY\", \"LATITUDE\", \"LONGITUDE\")   SELECT  \"UUID\", \"NAME\", \"BRAND\", \"STREET\", \"HOUSE_NUMBER\",\"POST_CODE\", \"CITY\", \"LATITUDE\", \"LONGITUDE\"  FROM \"CSMHC_CICD_2\".\"CSM_TANKERKOENIG_STATIONS_MASTER\" "
+                    "content": "UPSERT \"CSMHC_CICD\".\"CSM_TANKERKOENIG_STATIONS_ST_POINT\"  (\"UUID\", \"NAME\", \"BRAND\", \"STREET\", \"HOUSE_NUMBER\",\"POST_CODE\", \"CITY\", \"LATITUDE\", \"LONGITUDE\")   SELECT  \"UUID\", \"NAME\", \"BRAND\", \"STREET\", \"HOUSE_NUMBER\",\"POST_CODE\", \"CITY\", \"LATITUDE\", \"LONGITUDE\"  FROM \"CSMHC_CICD\".\"CSM_TANKERKOENIG_STATIONS_MASTER\" "
                 }
             }
         },
