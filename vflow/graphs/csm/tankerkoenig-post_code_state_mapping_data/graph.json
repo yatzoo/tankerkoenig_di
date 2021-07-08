@@ -1,6 +1,6 @@
 {
     "properties": {},
-    "description": "Tankerkoenig - loading post code and state mapping",
+    "description": "Tankerkoenig - post code and state mapping",
     "processes": {
         "graphterminator1": {
             "component": "com.sap.util.graphTerminator",
