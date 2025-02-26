@@ -8,3 +8,4 @@ vflow/var/
 vflow/.repoid
 *.pyc
 __pycache__/
+.DS_Store
